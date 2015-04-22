@@ -1,0 +1,293 @@
+<head>
+
+  <title>Tutorial hunt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+ 
+</head>
+
+<body>
+
+ 
+ <div id="navbar" class="navbar-fixed scrollspy">
+  <nav  class="black white-text">
+    <div class="nav-wrapper container">
+    	<div class="container"> <a href="/" class="brand-logo">Tutorial hunt</a></div>
+     
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      <ul class="right hide-on-med-and-down">
+       
+        <li><a href="#!">{{> loginButtons}}</a></li>
+         {{#if currentUser}}
+         <li><a href="/Profile">View Profile</a></li>
+         {{/if}}
+         
+       
+      </ul>
+      <ul class="right side-nav" id="mobile-demo">
+         <li><a href="#">{{> loginButtons}}</a></li>
+            {{#if currentUser}}
+         <li><a href="/Profile">View Profile</a></li>
+         {{/if}}
+      </ul>
+    </div>
+  </nav>
+
+  </div>
+
+
+
+  
+
+    <!-- Modal Trigger -->
+  
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Login to add tutorial or to upvote</h4>
+      
+    </div>
+  
+  </div>
+          
+
+ <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript">
+        function Show_Div(Div_id) {
+          var userId = Meteor.userId();
+        if(userId == null)
+        {
+        $('#modal1').openModal();
+
+        }
+        else{
+           if (false == $(Div_id).is(':visible')) {
+                $(Div_id).show(250);
+            }
+            else {
+                $(Div_id).hide(250);
+            }
+
+        }
+           
+        }
+
+    </script>
+
+  
+
+
+  
+  
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  <script>
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+      $('.button-collapse').sideNav();
+      $('.parallax').parallax();
+      
+  });
+  </script>
+
+  <script>
+  	    $('.head-link').click(function(e) {
+        e.preventDefault();
+        
+        var goto = $(this).attr('href');
+        $('html, body').animate({
+            scrollTop: $(goto).offset().top
+        }, 800);
+    });
+  </script>
+
+
+</body>
+<template name="Profile">
+{{profileName}}
+
+
+
+<img src="{{profilePicture}}" width="200"/>
+
+{{#each createdBy}}
+{{> tutorialDisplay}}
+{{/each}}
+</template>
+
+
+
+
+<template name="list">
+<h3 class="center">Tutorials</h3>
+<div class="container">
+  <div class="row">
+   
+    <div class="col s12 m10 l6">
+       <div class="collection">
+        <a href="/HTML&CSS" class="collection-item">html and css</a>
+        <a href="/C&C++" class="collection-item">c/c++</a>
+        <a href="/Java" class="collection-item">java</a>
+        <a href="/Javascript" class="collection-item">javascript</a>
+        <a href="/Jquery" class="collection-item">jquery</a>
+        <a href="/PHP" class="collection-item">PHP</a>
+         <a href="/Meteor" class="collection-item">Meteor</a>
+        <a href="/AngularJs" class="collection-item">Angular js</a>
+
+        <a href="#!" class="collection-item">Git</a>
+        
+
+      </div>
+    </div>
+
+    <div class="col s12 m10 l6">
+       <div class="collection">
+        <a href="/Python" class="collection-item">Python</a>
+        <a href="/NodeJs" class="collection-item">Node.js</a>
+        <a href="/RubyOnRails" class="collection-item">Ruby on rails</a>
+        <a href="/Ruby" class="collection-item">Ruby</a>
+         <a href="/AndroidDevelopment" class="collection-item">Android development</a>
+        <a href="/Wordpress" class="collection-item">Wordpress</a>
+        <a href="/Mysql" class="collection-item">Mysql</a>
+        <a href="/Mongodb" class="collection-item">Mongodb</a>
+        <a href="/Photoshop" class="collection-item">Photoshop</a>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+
+
+<template name="Python">
+<div>
+
+<br>
+ {{> addTutorialForm}}
+   <br>
+  {{#each Python}}
+    {{> tutorialDisplay}}
+  {{/each}}
+  </div>
+  </template>
+
+  <template name="Wordpress">
+<div>
+<br>
+ {{> addTutorialForm}}
+   <br>
+  {{#each Wordpress}}
+    {{> tutorialDisplay}}
+  {{/each}}
+  </div>
+  </template>
+
+
+
+
+
+<template name="tutorialDisplay">
+<div class="container">
+  <div class="row post">
+      <div class="col s1 m1 l1">
+            
+            <a id="addScore" class="upvote"><span id="upArrow" class="upvote--arrow"></span><span class="upvote--count">{{score}}</span></a>
+            
+
+      </div>
+
+      <div class="col s10">
+
+       
+             <a class="title" target="_blank" href="{{url}}">{{name}} <span class="badge">{{category}}</span></a>
+          <br>
+           
+      
+     
+      <div class="url">{{url}} </div>
+     
+     
+      </div>
+  </div>
+  </div>
+</template>
+
+
+
+
+<template name="addTutorialForm">
+<div class="container">
+ <button class="btn waves-effect waves-light" type="button" onclick="Show_Div(Div_1)">Click here to add tutorial
+    <i class="mdi-social-plus-one right"></i>
+  </button>
+  </div>
+
+<div class="container" id="Div_1" style="display: none;">
+<form class="col s12 m6 l4" name="addForm">
+<!--Enter name of tutorial<input type="text" name="playerName" id="playerName">
+Enter url of tutorial<input type="text" name="playerUrl" id="playerUrl">-->
+
+          <div class="row">
+          <div class="input-field col s12 m6 l6">
+          <input id="playerName" type="text" class="validate">
+          <label for="playerName">Enter name of tutorial</label>
+          </div>
+          </div>
+
+          <div class="row">
+          <div class="input-field col s12 m6 l6">
+          <input id="playerUrl" type="url" class="validate">
+          <label for="playerUrl">Enter url of tutorial</label>
+          </div>
+          </div>
+
+
+          
+          <div class="row">
+          <div class="col s12 m6 l6">
+           <label>Please select the category</label>
+    <select class="js-example-basic-single browser-default" id="selectId">
+      <option value="" disabled selected>Choose your tutorial category</option>
+      <option value="HTML & CSS">HTML & CSS</option>
+      <option value="C and C++">C and C++</option>
+      <option value="Java">Java</option>
+      <option value="Javascript">Javascript</option>
+      <option value="Jquery">Jquery</option>
+      <option value="PHP">PHP</option>
+      <option value="Meteor">Meteor</option>
+      <option value="Angular JS">Angular JS</option>
+      <option value="Python">Python</option>
+      <option value="Git">Git</option>
+      <option value="Ruby on rails">Ruby on rails</option>
+      <option value="Ruby">Ruby</option>
+      <option value="AndroidDevelopment">Android Development</option>
+      <option value="Wordpress">Wordpress</option>
+      <option value="Mysql">MySql</option>
+      <option value="Mongodb">Mongodb</option>
+      <option value="Photoshop">Photoshop</option>
+     
+    </select>
+    </div>
+    </div>
+        
+
+
+ <button class="btn waves-effect waves-light" type="submit" name="action">Add tutorial
+    <i class="mdi-content-send right"></i>
+  </button>
+
+<!--<input class="btn waves-effect waves-light btn" type="submit" value="add tutorial">-->
+</form>
+</div>
+
+
+
+</template>
+
+
+
+
+
+
