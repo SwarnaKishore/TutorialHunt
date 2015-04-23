@@ -105,18 +105,25 @@
 
 
 </body>
+
+
 <template name="Profile">
-{{profileName}}
-
-
-
+{{profilename}}
+{{memberSince}}
 <img src="{{profilePicture}}" width="200"/>
-
 {{#each createdBy}}
 {{> tutorialDisplay}}
 {{/each}}
 </template>
 
+
+<template name="showProfile">
+{{profileName}}
+<img src="{{pictureUrl}}" width="200"/>
+{{#each createdBy}}
+{{> tutorialDisplay}}
+{{/each}}
+</template>
 
 
 
@@ -161,18 +168,6 @@
 
 
 
-<template name="Python">
-<div>
-
-<br>
- {{> addTutorialForm}}
-   <br>
-  {{#each Python}}
-    {{> tutorialDisplay}}
-  {{/each}}
-  </div>
-  </template>
-
   <template name="Wordpress">
 <div>
 <br>
@@ -198,18 +193,16 @@
 
       </div>
 
-      <div class="col s10">
-
-       
-             <a class="title" target="_blank" href="{{url}}">{{name}} <span class="badge">{{category}}</span></a>
+      <div class="col s9 m10 l10">    
+             <a class="title" target="_blank" href="{{url}}">{{name}}</a>
           <br>
-           
-      
-     
       <div class="url">{{url}} </div>
-     
-     
-      </div>
+    </div>
+
+    <div class="col s2 m1 l1">
+     <a id="viewProfile" href="/showProfile/{{this._id}}"><img src="{{pictureUrl}}" class="circle responsive-img"/></a>
+    </div>
+
   </div>
   </div>
 </template>
@@ -245,7 +238,7 @@ Enter url of tutorial<input type="text" name="playerUrl" id="playerUrl">-->
 
 
           
-          <div class="row">
+         <!-- <div class="row">
           <div class="col s12 m6 l6">
            <label>Please select the category</label>
     <select class="js-example-basic-single browser-default" id="selectId">
@@ -270,7 +263,7 @@ Enter url of tutorial<input type="text" name="playerUrl" id="playerUrl">-->
      
     </select>
     </div>
-    </div>
+    </div>-->
         
 
 
