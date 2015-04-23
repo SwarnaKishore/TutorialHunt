@@ -1,7 +1,4 @@
-playersList6 = new Meteor.Collection('players');
-
-
-var count=0;
+playersList8 = new Meteor.Collection('players');
 
 
 
@@ -33,7 +30,7 @@ Router.route('/showProfile', {
   template : 'showProfile',
   data: function(){
         Session.set('tutorialId', this.params._id);
-        return playersList6.findOne(this.params._id);
+        return playersList8.findOne(this.params._id);
 
    }
 });
@@ -51,10 +48,11 @@ Template.showProfile.helpers({
 createdBy:function(){
   var tutorialId = Session.get('tutorialId');
   console.log(tutorialId);
-    var createdBy = playersList6.findOne({_id : tutorialId},{createdBy:1});
+    var createdBy = playersList8.findOne({_id : tutorialId},{createdBy:1});
+    console.log(createdBy);
     var currentCreator = createdBy.createdBy;
     console.log(currentCreator);
-     return playersList6.find({createdBy : currentCreator},{sort:  {score : -1, name: 1}});
+     return playersList8.find({createdBy : currentCreator},{sort:  {score : -1, name: 1}});
   
 
   }
@@ -92,7 +90,7 @@ profilePicture: function(){
 
 
   createdBy:function(){
-    return playersList6.find({createdBy : Meteor.userId()},{sort:  {score : -1, name: 1}});
+    return playersList8.find({createdBy : Meteor.userId()},{sort:  {score : -1, name: 1}});
   }
 });
 
@@ -100,9 +98,9 @@ profilePicture: function(){
 Template.tutorialDisplay.events({
   'click #addScore': function (event, template) {
     var userId = Meteor.userId();
-    var playerId = this._id;
-    Session.set('selectedPlayer', playerId);
-    var selectedPlayer = Session.get('selectedPlayer');
+    var tutorialId = this._id;
+    Session.set('selectedTutorial', tutorialId);
+    var selectedPlayer = Session.get('selectedTutorial');
 
     
 
@@ -112,26 +110,31 @@ Template.tutorialDisplay.events({
 
         } 
         else
-        {
+        {   
 
-        if(count==0)
-        {
-          Meteor.call('modifyPlayerScore',selectedPlayer,1);
-          $("#addScore").addClass("upvoted");
+            var test = playersList8.findOne({_id:this._id, upvoterIds : userId});
 
-          count=1;
-         
-        }
+            console.log(test);
 
+            if(test)
+            {
+              Meteor.call('modifyTutorialScore',selectedTutorial,-1);
+              Meteor.call('removeScoreIds',selectedTutorial,userId);
+              $("#addScore").removeClass("upvoted");
+              
+              
+            }
+            else
+              {
+              Meteor.call('modifyPlayerScore',selectedTutorial,1);
+              Meteor.call('addScoreIds',selectedTutorial,userId);
+              $("#addScore").addClass("upvoted");
+               var test2 = playersList8.findOne({_id:this._id, upvoterIds : userId});
 
-        else
-          {
-        Meteor.call('modifyPlayerScore',selectedPlayer,-1);
-        $("#addScore").removeClass("upvoted");
+            console.log(test2);
+              }
+             
 
-          
-          count = 0;
-          }
         }
   }
  });
@@ -141,7 +144,7 @@ Template.Wordpress.helpers({
  Wordpress: function()
  {
   var currentUserId = Meteor.userId();
-  return playersList6.find({category:"Wordpress"},{sort:  {score : -1, name: 1}});
+  return playersList8.find({category:"Wordpress"},{sort:  {score : -1, name: 1}});
 }
 });
 
@@ -154,8 +157,8 @@ Template.addTutorialForm.events({
 event.preventDefault();
 /*var playerNameVar = template.find('#playerName').value; */
  
-          var playerNameVar= event.target.playerName.value;
-          var playerUrlVar= event.target.playerUrl.value;
+          var tutorialNameVar= event.target.tutorialName.value;
+          var tutorialUrlVar= event.target.tutorialUrl.value;
           var selectVar = "Python";
           var profileName = Meteor.user().username || Meteor.user().profile.name;
           var pictureUrl;
@@ -169,10 +172,10 @@ event.preventDefault();
             pictureUrl= Meteor.user().services.twitter.profile_image_url;
           }
 
-          Meteor.call('insertPlayerData', playerNameVar,playerUrlVar,selectVar,profileName,pictureUrl);
+          Meteor.call('insertTutorialData', tutorialNameVar,tutorialUrlVar,selectVar,profileName,pictureUrl);
 
-          event.target.playerName.value="";
-          event.target.playerUrl.value="";
+          event.target.tutorialName.value="";
+          event.target.tutorialUrl.value="";
           
 
           Meteor.setTimeout(function(){  
@@ -193,7 +196,7 @@ if(Meteor.isServer)
 
 Meteor.publish('thePlayers', function(){
  var currentUserId = this.userId;
- return playersList6.find();
+ return playersList8.find();
 });
 
 Meteor.publish("userInformation", function() {
@@ -201,15 +204,17 @@ return Meteor.users.find();
 });
 
 Meteor.methods({
-'insertPlayerData' : function(playerNameVar,playerUrlVar,selectVar,profileName,pictureUrl)
+'insertTutorialData' : function(tutorialNameVar,tutorialUrlVar,selectVar,profileName,pictureUrl)
 {
 var currentUserId = Meteor.userId();
-playersList6.insert({
-  name: playerNameVar,
-  url: playerUrlVar,
+var createdAt = Meteor.user().createdAt;
+playersList8.insert({
+  name: tutorialNameVar,
+  url: tutorialUrlVar,
   score: 0, 
   category: selectVar,
   createdBy : currentUserId,
+  createdAt : createdAt,
   profileName : profileName,
   pictureUrl : pictureUrl
 });
@@ -219,11 +224,26 @@ playersList6.insert({
 
 
 
-'modifyPlayerScore' : function(selectedPlayer, scoreValue)
+'modifyTutorialScore' : function(selectedTutorial, scoreValue)
 {
- playersList6.update({_id: selectedPlayer} , {$inc :{score: scoreValue}});
-}
+ playersList8.update({_id: selectedTutorial} , {$inc :{score: scoreValue}});
+},
 
+
+'addScoreIds' : function(selectedTutorial,userId)
+{
+ playersList8.update({_id: selectedTutorial}, {
+      $addToSet: {upvoterIds: userId}
+    }); 
+},
+
+
+'removeScoreIds' : function(selectedPlayer,userId)
+{
+  playersList8.update({_id: selectedPlayer}, {
+      $pull: {upvoterIds: userId}
+    }); 
+}
 
 
 });

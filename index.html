@@ -85,23 +85,14 @@
 
   <script>
   $(document).ready(function(){
-    $('.materialboxed').materialbox();
+    
       $('.button-collapse').sideNav();
       $('.parallax').parallax();
       
   });
   </script>
 
-  <script>
-  	    $('.head-link').click(function(e) {
-        e.preventDefault();
-        
-        var goto = $(this).attr('href');
-        $('html, body').animate({
-            scrollTop: $(goto).offset().top
-        }, 800);
-    });
-  </script>
+  
 
 
 </body>
@@ -119,6 +110,7 @@
 
 <template name="showProfile">
 {{profileName}}
+{{createdAt}}
 <img src="{{pictureUrl}}" width="200"/>
 {{#each createdBy}}
 {{> tutorialDisplay}}
@@ -193,10 +185,10 @@
 
       </div>
 
-      <div class="col s9 m10 l10">    
-             <a class="title" target="_blank" href="{{url}}">{{name}}</a>
+      <div class="col s8 m9 l10">    
+             <a class="title" target="_blank" href="{{url}}">{{name}}
           <br>
-      <div class="url">{{url}} </div>
+      <div class="url">{{url}} </div></a>
     </div>
 
     <div class="col s2 m1 l1">
@@ -224,47 +216,17 @@ Enter url of tutorial<input type="text" name="playerUrl" id="playerUrl">-->
 
           <div class="row">
           <div class="input-field col s12 m6 l6">
-          <input id="playerName" type="text" class="validate">
-          <label for="playerName">Enter name of tutorial</label>
+          <input id="tutorialName" type="text" class="validate">
+          <label for="tutorialName">Enter name of tutorial</label>
           </div>
           </div>
 
           <div class="row">
           <div class="input-field col s12 m6 l6">
-          <input id="playerUrl" type="url" class="validate">
-          <label for="playerUrl">Enter url of tutorial</label>
+          <input id="tutorialUrl" type="url" class="validate">
+          <label for="tutorialUrl">Enter url of tutorial</label>
           </div>
           </div>
-
-
-          
-         <!-- <div class="row">
-          <div class="col s12 m6 l6">
-           <label>Please select the category</label>
-    <select class="js-example-basic-single browser-default" id="selectId">
-      <option value="" disabled selected>Choose your tutorial category</option>
-      <option value="HTML & CSS">HTML & CSS</option>
-      <option value="C and C++">C and C++</option>
-      <option value="Java">Java</option>
-      <option value="Javascript">Javascript</option>
-      <option value="Jquery">Jquery</option>
-      <option value="PHP">PHP</option>
-      <option value="Meteor">Meteor</option>
-      <option value="Angular JS">Angular JS</option>
-      <option value="Python">Python</option>
-      <option value="Git">Git</option>
-      <option value="Ruby on rails">Ruby on rails</option>
-      <option value="Ruby">Ruby</option>
-      <option value="AndroidDevelopment">Android Development</option>
-      <option value="Wordpress">Wordpress</option>
-      <option value="Mysql">MySql</option>
-      <option value="Mongodb">Mongodb</option>
-      <option value="Photoshop">Photoshop</option>
-     
-    </select>
-    </div>
-    </div>-->
-        
 
 
  <button class="btn waves-effect waves-light" type="submit" name="action">Add tutorial
