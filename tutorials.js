@@ -94,49 +94,42 @@ profilePicture: function(){
   }
 });
 
+Template.tutorialDisplay.helpers({
+  upvotedClass: function() {
+    var userId = Meteor.userId();
+    var tutorial = playersList8.findOne(this._id);
+    console.log(tutorial);
+    if (userId && !_.include(tutorial.upvoterIds, userId)) {
+      return 'upvotable';
+    } else if(userId)
+    {
+      return 'upvoted disabled';
+    }
+  }
+});
 
 Template.tutorialDisplay.events({
-  'click #addScore': function (event, template) {
+  'click .upvotable': function (event, template) {
+    event.preventDefault();
     var userId = Meteor.userId();
     var tutorialId = this._id;
     Session.set('selectedTutorial', tutorialId);
-    var selectedPlayer = Session.get('selectedTutorial');
+    var selectedTutorial = Session.get('selectedTutorial');
+    Meteor.call('addScoreIds',selectedTutorial,userId,1);
+  },
 
-    
 
-        if(userId == null)
+  'click .upvote' : function(event, template)
+  {
+    event.preventDefault();
+    var userId = Meteor.userId();
+    if(userId == null)
         {
          $('#modal1').openModal();
 
         } 
-        else
-        {   
+   }
 
-            var test = playersList8.findOne({_id:this._id, upvoterIds : userId});
-
-            console.log(test);
-
-            if(test)
-            {
-              Meteor.call('modifyTutorialScore',selectedTutorial,-1);
-              Meteor.call('removeScoreIds',selectedTutorial,userId);
-              $("#addScore").removeClass("upvoted");
-              
-              
-            }
-            else
-              {
-              Meteor.call('modifyPlayerScore',selectedTutorial,1);
-              Meteor.call('addScoreIds',selectedTutorial,userId);
-              $("#addScore").addClass("upvoted");
-               var test2 = playersList8.findOne({_id:this._id, upvoterIds : userId});
-
-            console.log(test2);
-              }
-             
-
-        }
-  }
  });
 
 
@@ -224,26 +217,18 @@ playersList8.insert({
 
 
 
-'modifyTutorialScore' : function(selectedTutorial, scoreValue)
+'addScoreIds' : function(selectedTutorial, userId , scoreValue)
 {
- playersList8.update({_id: selectedTutorial} , {$inc :{score: scoreValue}});
-},
 
-
-'addScoreIds' : function(selectedTutorial,userId)
-{
- playersList8.update({_id: selectedTutorial}, {
-      $addToSet: {upvoterIds: userId}
+  playersList8.update({_id: selectedTutorial, upvoterIds: {$ne : userId}}, {
+      $addToSet: {upvoterIds: userId},
+      $inc :{score: scoreValue}
     }); 
-},
-
-
-'removeScoreIds' : function(selectedPlayer,userId)
-{
-  playersList8.update({_id: selectedPlayer}, {
-      $pull: {upvoterIds: userId}
-    }); 
+ 
 }
+
+
+
 
 
 });
