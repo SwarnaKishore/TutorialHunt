@@ -126,13 +126,7 @@ Template.Layout.events({
 }
 });
 
-Template.Wordpress.helpers({
- Wordpress: function()
- {
-  var currentUserId = Meteor.userId();
-  return tutorialList.find({category:"Wordpress"},{sort:  {score : -1}});
-}
-});
+
 
 
 
