@@ -1,6 +1,6 @@
 <head>
 
-  <title>Tutorial hunt</title>
+  <title>Tutorial Hunt</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
@@ -8,39 +8,31 @@
 </head>
 
 <body>
-
- 
- <div id="navbar" class="navbar-fixed scrollspy">
-  <nav  class="black white-text">
+<div id="navbar" class="navbar-fixed">
+  <nav>
     <div class="nav-wrapper container">
-    	<div class="container"> <a href="/" class="brand-logo">Tutorial hunt</a></div>
+      <div class="container"> <a href="/" class="brand-logo">Logo</a></div>
      
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
-       
-        <li><a href="#!">{{> loginButtons}}</a></li>
+          <li>{{> atNavButton }}</li>
+        <!--<li>{{> atNavButton }}</li>-->
          {{#if currentUser}}
-         <li><a href="/Profile">View Profile</a></li>
+         <li><a id="profileView" href="/Profile">View Profile</a></li>
          {{/if}}
-         
-       
       </ul>
-      <ul class="right side-nav" id="mobile-demo">
-         <li><a href="#">{{> loginButtons}}</a></li>
-            {{#if currentUser}}
-         <li><a href="/Profile">View Profile</a></li>
+      <ul class="side-nav" id="mobile-demo">
+        <li>{{> atNavButton }}</li>
+        <!--<li>{{> atNavButton }}</li>-->
+         {{#if currentUser}}
+         <li><a id="profileView" href="/Profile">View Profile</a></li>
          {{/if}}
       </ul>
     </div>
   </nav>
-
   </div>
 
-
-
-  
-
-    <!-- Modal Trigger -->
+    
   
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
@@ -86,56 +78,167 @@
   <script>
   $(document).ready(function(){
     
-      $('.button-collapse').sideNav();
-      $('.parallax').parallax();
+        $(".button-collapse").sideNav();
+          $('.parallax').parallax();
+       $('ul.tabs').tabs();
       
   });
   </script>
-
-  
 
 
 </body>
 
 
+<template name="Layout">
+
+
+{{> yield}}
+
+
+
+<footer class="page-footer">
+          
+          <div class="footer-copyright">
+            <div class="container">
+            © 2015 Tutorial hunt
+            
+            </div>
+          </div>
+        </footer>
+
+
+
+</template>
+
+
+
 <template name="Profile">
-{{profilename}}
-{{memberSince}}
-<img src="{{profilePicture}}" width="200"/>
-{{#each createdBy}}
-{{> tutorialDisplay}}
-{{/each}}
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+       <div class="row">
+        <div class="col s12 m5 l5">
+          <img src="{{profilePicture}}" class="circle responsive-img" width="200"/>
+        </div>
+        
+        <div class="col s12 m7 l7">
+          <table class="bordered">
+            <tr>
+            <td>Name:</td>
+            <td>{{profilename}}</td>
+            </tr>
+            <tr>
+            <td>Member since:</td>
+            <td>{{memberSince}}</td>
+            </tr>
+          </table>
+        </div><!--col-->
+   </div><!--row-->
+  </div><!--card content-->
+</div><!--card-->
+</div><!--container-->
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-content"> 
+    <h4>Tutorials Created</h4>
+      {{#each createdBy}}
+      {{> tutorialDisplay}}
+      {{/each}}
+    </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-content"> 
+    <h4>Tutorials Upvoted</h4>
+     {{#each upvotedBy}}
+      {{> tutorialDisplay}}
+      {{/each}}
+    </div>
+    </div>
+</div>
 </template>
 
 
 <template name="showProfile">
-{{profileName}}
-{{createdAt}}
-<img src="{{pictureUrl}}" width="200"/>
-{{#each createdBy}}
-{{> tutorialDisplay}}
-{{/each}}
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+       <div class="row">
+        <div class="col s12 m5 l5">
+          <img src="{{pictureUrl}}" class="circle responsive-img" width="200"/>
+        </div>
+        
+        <div class="col s12 m7 l7">
+          <table class="bordered">
+            <tr>
+            <td>Name:</td>
+            <td>{{profileName}}</td>
+            </tr>
+            <tr>
+            <td>Member since:</td>
+            <td>{{createdAt}}</td>
+            </tr>
+          </table>
+        </div><!--col-->
+   </div><!--row-->
+  </div><!--card content-->
+</div><!--card-->
+</div><!--container-->
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-content"> 
+    <h4>Tutorials Created</h4>
+      {{#each createdBy}}
+      {{> tutorialDisplay}}
+      {{/each}}
+    </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-content"> 
+    <h4>Tutorials Upvoted</h4>
+     {{#each upvotedBy}}
+      {{> tutorialDisplay}}
+      {{/each}}
+    </div>
+    </div>
+</div>
+
 </template>
 
 
 
+
+
+
 <template name="list">
+ 
 <h3 class="center">Tutorials</h3>
 <div class="container">
   <div class="row">
    
     <div class="col s12 m10 l6">
        <div class="collection">
-        <a href="/HTML&CSS" class="collection-item">html and css</a>
-        <a href="/C&C++" class="collection-item">c/c++</a>
-        <a href="/Java" class="collection-item">java</a>
-        <a href="/Javascript" class="collection-item">javascript</a>
-        <a href="/Jquery" class="collection-item">jquery</a>
+        <a href="/HTML&CSS" class="collection-item">HTML & CSS</a>
+        <a href="/C&C++" class="collection-item">C & C++</a>
+         <a href="/C&C++" class="collection-item">C#</a>
+
+        <a href="/Java" class="collection-item">Java</a>
+        <a href="/Javascript" class="collection-item">Javascript</a>
+        <a href="/Jquery" class="collection-item">Jquery</a>
         <a href="/PHP" class="collection-item">PHP</a>
          <a href="/Meteor" class="collection-item">Meteor</a>
-        <a href="/AngularJs" class="collection-item">Angular js</a>
+        <a href="/AngularJs" class="collection-item">Angular Js</a>
 
-        <a href="#!" class="collection-item">Git</a>
+        <a href="/Git" class="collection-item">Git</a>
         
 
       </div>
@@ -143,7 +246,7 @@
 
     <div class="col s12 m10 l6">
        <div class="collection">
-        <a href="/Python" class="collection-item">Python</a>
+        <a href="/tutorial/Python" class="collection-item">Python</a>
         <a href="/NodeJs" class="collection-item">Node.js</a>
         <a href="/RubyOnRails" class="collection-item">Ruby on rails</a>
         <a href="/Ruby" class="collection-item">Ruby</a>
@@ -152,6 +255,11 @@
         <a href="/Mysql" class="collection-item">Mysql</a>
         <a href="/Mongodb" class="collection-item">Mongodb</a>
         <a href="/Photoshop" class="collection-item">Photoshop</a>
+         <a href="/Hadoop" class="collection-item">Hadoop</a>
+          <a href="/Perl" class="collection-item">Perl</a>
+           <a href="/Go" class="collection-item">Go</a>
+            <a href="/React" class="collection-item">React</a>
+            <a href="/Django" class="collection-item">Django</a>
       </div>
     </div>
   </div>
@@ -176,23 +284,26 @@
 
 
 <template name="tutorialDisplay">
-<div class="container">
+<div>
   <div class="row post">
-      <div class="col s1 m1 l1">
+      <div class="col s2 m1 l1">
             
             <a id="addScore" class="upvote {{upvotedClass}}"><span id="upArrow" class="upvote--arrow"></span><span class="upvote--count">{{score}}</span></a>
             
 
       </div>
 
-      <div class="col s8 m9 l10">    
+      <div class="col s8 m9 l10">
+              
+            <div class="col s12"> 
              <a class="title" target="_blank" href="{{url}}">{{name}}
-          <br>
-      <div class="url">{{url}} </div></a>
+             <p class="url">{{url}} </p></a>
+             </div>
+
     </div>
 
-    <div class="col s2 m1 l1">
-     <a id="viewProfile" href="/showProfile/{{this._id}}"><img src="{{pictureUrl}}" class="circle responsive-img"/></a>
+    <div class="col s2 m2 l1">
+     <a id="viewProfile" href="/showProfile/{{this._id}}"><img src="{{pictureUrl}}" width="45" class="circle responsive-img"/></a>
     </div>
 
   </div>
@@ -203,13 +314,14 @@
 
 
 <template name="addTutorialForm">
-<div class="container">
- <button class="btn waves-effect waves-light" type="button" onclick="Show_Div(Div_1)">Click here to add tutorial
-    <i class="mdi-social-plus-one right"></i>
-  </button>
-  </div>
 
-<div class="container" id="Div_1" style="display: none;">
+ 
+  <a id="addTutorial" href="#!" onclick="Show_Div(Div_1)"> Click here to add
+  </a>
+
+<div id="Div_1" style="display: none;">
+<div class="card">
+<div class="card-content">
 <form class="col s12 m6 l4" name="addForm">
 <!--Enter name of tutorial<input type="text" name="playerName" id="playerName">
 Enter url of tutorial<input type="text" name="playerUrl" id="playerUrl">-->
@@ -236,7 +348,8 @@ Enter url of tutorial<input type="text" name="playerUrl" id="playerUrl">-->
 <!--<input class="btn waves-effect waves-light btn" type="submit" value="add tutorial">-->
 </form>
 </div>
-
+</div>
+</div>
 
 
 </template>

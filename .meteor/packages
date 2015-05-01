@@ -10,8 +10,10 @@ insecure
 accounts-ui
 materialize:materialize
 iron:router
-accounts-password
 accounts-facebook
 bengott:avatar
 accounts-twitter
-accounts-google
+useraccounts:materialize
+service-configuration
+accounts-github
+aldeed:collection2

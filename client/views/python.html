@@ -1,0 +1,17 @@
+<template name="Python">
+<div class="container">
+<br>
+<p>Do you know any python tutorials? 
+ {{> addTutorialForm}}</p>
+   <br>
+  <div class="card">
+    <div class="card-content"> 
+     {{#each Python}}
+    {{> tutorialDisplay}}
+  {{/each}}
+  
+    </div>
+    </div>
+</div>
+  </template>
+  

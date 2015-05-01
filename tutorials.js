@@ -1,45 +1,12 @@
-playersList8 = new Meteor.Collection('players');
 
 
 
-Router.route('/', function () {
-  this.render('list');
-});
-Router.route('/Profile');
-Router.route('/HTML&CSS');
-Router.route('/C&C++');
-Router.route('/Java');
-Router.route('/Javascript');
-Router.route('/Jquery');
-Router.route('/PHP');
-Router.route('/Meteor');
-Router.route('/AngularJs');
-Router.route('/Git');
-Router.route('/Python');
-Router.route('/NodeJs');
-Router.route('/RubyOnRails');
-Router.route('/Ruby');
-Router.route('/AndroidDevelopment');
-Router.route('/Wordpress');
-Router.route('/Mysql');
-Router.route('/Mongodb');
-Router.route('/Photoshop');
-
-Router.route('/showProfile', {
-  path : '/showProfile/:_id',
-  template : 'showProfile',
-  data: function(){
-        Session.set('tutorialId', this.params._id);
-        return playersList8.findOne(this.params._id);
-
-   }
-});
 
 if(Meteor.isClient)
 {
    
 
-  Meteor.subscribe('thePlayers');
+  Meteor.subscribe('theTutorials');
   Meteor.subscribe('userInformation');
 
 
@@ -47,27 +14,34 @@ if(Meteor.isClient)
 Template.showProfile.helpers({
 createdBy:function(){
   var tutorialId = Session.get('tutorialId');
-  console.log(tutorialId);
-    var createdBy = playersList8.findOne({_id : tutorialId},{createdBy:1});
-    console.log(createdBy);
+    var createdBy = tutorialList.findOne({_id : tutorialId},{createdBy:1});
     var currentCreator = createdBy.createdBy;
-    console.log(currentCreator);
-     return playersList8.find({createdBy : currentCreator},{sort:  {score : -1, name: 1}});
-  
+    return tutorialList.find({createdBy : currentCreator},{sort:  {score : -1}});
+
+
+  },
+
+  upvotedBy: function(){
+    var tutorialId = Session.get('tutorialId');
+    var createdBy = tutorialList.findOne({_id : tutorialId},{createdBy:1});
+    var currentCreator = createdBy.createdBy;
+    return tutorialList.find({ upvoterIds: currentCreator},{sort:  {score : -1}});
 
   }
 });
-
-
-
-
 
 
 Template.Profile.helpers({
 
   
   profilename: function() {
-    return Meteor.user().username || Meteor.user().profile.name;
+    if (Meteor.user().services.github)
+      return Meteor.user().services.github.username;
+    else if(Meteor.user().services.facebook)
+      return Meteor.user().services.facebook.name;
+    else if(Meteor.user().services.twitter)
+      return Meteor.user().services.twitter.screenName;
+    
   },
   memberSince : function()
   {
@@ -84,20 +58,27 @@ profilePicture: function(){
           {
             return Meteor.user().services.twitter.profile_image_url;
           }
+          else if(Meteor.user().services.github)
+            return "https://avatars3.githubusercontent.com/u/" + Meteor.user().services.github.id;
           
 
         },
 
 
   createdBy:function(){
-    return playersList8.find({createdBy : Meteor.userId()},{sort:  {score : -1, name: 1}});
+    return tutorialList.find({createdBy : Meteor.userId()},{sort:  {score : -1}});
+  },
+    upvotedBy: function(){
+   
+    return tutorialList.find({ upvoterIds: Meteor.userId()},{sort:  {score : -1}});
+
   }
 });
 
 Template.tutorialDisplay.helpers({
   upvotedClass: function() {
     var userId = Meteor.userId();
-    var tutorial = playersList8.findOne(this._id);
+    var tutorial = tutorialList.findOne(this._id);
     console.log(tutorial);
     if (userId && !_.include(tutorial.upvoterIds, userId)) {
       return 'upvotable';
@@ -108,6 +89,8 @@ Template.tutorialDisplay.helpers({
   }
 });
 
+
+
 Template.tutorialDisplay.events({
   'click .upvotable': function (event, template) {
     event.preventDefault();
@@ -117,7 +100,11 @@ Template.tutorialDisplay.events({
     var selectedTutorial = Session.get('selectedTutorial');
     Meteor.call('addScoreIds',selectedTutorial,userId,1);
   },
+  
+  'click #viewProfile': function(event,template){
+    window.scrollTo(0,0);
 
+  },
 
   'click .upvote' : function(event, template)
   {
@@ -133,11 +120,17 @@ Template.tutorialDisplay.events({
  });
 
 
+Template.Layout.events({
+'click #profileView':function(event, template){
+  window.scrollTo(0,0);
+}
+});
+
 Template.Wordpress.helpers({
  Wordpress: function()
  {
   var currentUserId = Meteor.userId();
-  return playersList8.find({category:"Wordpress"},{sort:  {score : -1, name: 1}});
+  return tutorialList.find({category:"Wordpress"},{sort:  {score : -1}});
 }
 });
 
@@ -152,7 +145,10 @@ event.preventDefault();
  
           var tutorialNameVar= event.target.tutorialName.value;
           var tutorialUrlVar= event.target.tutorialUrl.value;
-          var selectVar = "Python";
+          if (!tutorialNameVar || !tutorialUrlVar)
+            return;
+          var tutorialName = Session.get('tutorialName');
+         
           var profileName = Meteor.user().username || Meteor.user().profile.name;
           var pictureUrl;
           if(Meteor.user().services.facebook)
@@ -164,8 +160,10 @@ event.preventDefault();
           {
             pictureUrl= Meteor.user().services.twitter.profile_image_url;
           }
+          else if(Meteor.user().services.github)
+            pictureUrl = "https://avatars3.githubusercontent.com/u/" + Meteor.user().services.github.id;
 
-          Meteor.call('insertTutorialData', tutorialNameVar,tutorialUrlVar,selectVar,profileName,pictureUrl);
+          Meteor.call('insertTutorialData', tutorialNameVar,tutorialUrlVar,tutorialName,profileName,pictureUrl);
 
           event.target.tutorialName.value="";
           event.target.tutorialUrl.value="";
@@ -185,27 +183,29 @@ event.preventDefault();
 
 if(Meteor.isServer)
 {
+  Meteor.users.deny({
+  update: function() {
+    return true;
+  }
+});
+
+  Meteor.users.deny({
+  insert: function() {
+    return false;
+  }
+});
    
 
-Meteor.publish('thePlayers', function(){
- var currentUserId = this.userId;
- return playersList8.find();
-});
-
-Meteor.publish("userInformation", function() {
-return Meteor.users.find();
-});
-
 Meteor.methods({
-'insertTutorialData' : function(tutorialNameVar,tutorialUrlVar,selectVar,profileName,pictureUrl)
+'insertTutorialData' : function(tutorialNameVar,tutorialUrlVar,tutorialName,profileName,pictureUrl)
 {
 var currentUserId = Meteor.userId();
 var createdAt = Meteor.user().createdAt;
-playersList8.insert({
+tutorialList.insert({
   name: tutorialNameVar,
   url: tutorialUrlVar,
   score: 0, 
-  category: selectVar,
+  category: tutorialName,
   createdBy : currentUserId,
   createdAt : createdAt,
   profileName : profileName,
@@ -219,8 +219,7 @@ playersList8.insert({
 
 'addScoreIds' : function(selectedTutorial, userId , scoreValue)
 {
-
-  playersList8.update({_id: selectedTutorial, upvoterIds: {$ne : userId}}, {
+    tutorialList.update({_id: selectedTutorial, upvoterIds: {$ne : userId}}, {
       $addToSet: {upvoterIds: userId},
       $inc :{score: scoreValue}
     }); 
