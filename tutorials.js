@@ -41,6 +41,9 @@ Template.Profile.helpers({
       return Meteor.user().services.facebook.name;
     else if(Meteor.user().services.twitter)
       return Meteor.user().services.twitter.screenName;
+    else if(Meteor.user().services.google.name)
+      return Meteor.user().services.google.name;
+
     
   },
   memberSince : function()
@@ -60,6 +63,8 @@ profilePicture: function(){
           }
           else if(Meteor.user().services.github)
             return "https://avatars3.githubusercontent.com/u/" + Meteor.user().services.github.id;
+          else if(Meteor.user().services.google)
+            return Meteor.user().services.google.picture;
           
 
         },
@@ -79,7 +84,6 @@ Template.tutorialDisplay.helpers({
   upvotedClass: function() {
     var userId = Meteor.userId();
     var tutorial = tutorialList.findOne(this._id);
-    console.log(tutorial);
     if (userId && !_.include(tutorial.upvoterIds, userId)) {
       return 'upvotable';
     } else if(userId)
@@ -120,6 +124,54 @@ Template.tutorialDisplay.events({
  });
 
 
+
+
+Template.profileDisplay.helpers({
+  upvotedClass: function() {
+    var userId = Meteor.userId();
+    var tutorial = tutorialList.findOne(this._id);
+    if (userId && !_.include(tutorial.upvoterIds, userId)) {
+      return 'upvotable';
+    } else if(userId)
+    {
+      return 'upvoted disabled';
+    }
+  }
+});
+
+
+
+Template.profileDisplay.events({
+  'click .upvotable': function (event, template) {
+    event.preventDefault();
+    var userId = Meteor.userId();
+    var tutorialId = this._id;
+    Session.set('selectedTutorial', tutorialId);
+    var selectedTutorial = Session.get('selectedTutorial');
+    Meteor.call('addScoreIds',selectedTutorial,userId,1);
+  },
+  
+  'click #viewProfile': function(event,template){
+    window.scrollTo(0,0);
+
+  },
+
+  'click .upvote' : function(event, template)
+  {
+    event.preventDefault();
+    var userId = Meteor.userId();
+    if(userId == null)
+        {
+         $('#modal1').openModal();
+
+        } 
+   }
+
+ });
+
+
+
+
 Template.Layout.events({
 'click #profileView':function(event, template){
   window.scrollTo(0,0);
@@ -143,7 +195,18 @@ event.preventDefault();
             return;
           var tutorialName = Session.get('tutorialName');
          
-          var profileName = Meteor.user().username || Meteor.user().profile.name;
+          var profileName;
+
+
+          if (Meteor.user().services.github)
+              profileName = Meteor.user().services.github.username;
+          else if(Meteor.user().services.facebook)
+              profileName = Meteor.user().services.facebook.name;
+          else if(Meteor.user().services.twitter)
+              profileName = Meteor.user().services.twitter.screenName;
+          else if(Meteor.user().services.google.name)
+              profileName = Meteor.user().services.google.name;
+
           var pictureUrl;
           if(Meteor.user().services.facebook)
           {
@@ -156,6 +219,8 @@ event.preventDefault();
           }
           else if(Meteor.user().services.github)
             pictureUrl = "https://avatars3.githubusercontent.com/u/" + Meteor.user().services.github.id;
+          else if(Meteor.user().services.google)
+            pictureUrl = Meteor.user().services.google.picture;
 
           Meteor.call('insertTutorialData', tutorialNameVar,tutorialUrlVar,tutorialName,profileName,pictureUrl);
 

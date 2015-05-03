@@ -1,7 +1,7 @@
 // Set up login services
-Meteor.startup(function() {
+/*Meteor.startup(function() {
   // Add Facebook configuration entry
-  
+ /* 
   ServiceConfiguration.configurations.update(
     { service: "facebook" },
     { $set: {
@@ -36,7 +36,7 @@ Meteor.startup(function() {
   */
 
   // Add Google configuration entry
-  ServiceConfiguration.configurations.update(
+ /* ServiceConfiguration.configurations.update(
     { service: "google" },
     { $set: {
         clientId: "389344058726-6cttdka3pjd7d3eepnlfqfpbjfi2nl8c.apps.googleusercontent.com",
@@ -59,4 +59,4 @@ Meteor.startup(function() {
     { upsert: true }
   );
   */
-});
+/*});*/

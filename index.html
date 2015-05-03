@@ -37,7 +37,7 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Login to add tutorial or to upvote</h4>
+      <h4>Please login to upvote or to add tutorials</h4>
       
     </div>
   
@@ -144,7 +144,7 @@
     <div class="card-content"> 
     <h4>Tutorials Created</h4>
       {{#each createdBy}}
-      {{> tutorialDisplay}}
+      {{> profileDisplay}}
       {{/each}}
     </div>
     </div>
@@ -155,7 +155,7 @@
     <div class="card-content"> 
     <h4>Tutorials Upvoted</h4>
      {{#each upvotedBy}}
-      {{> tutorialDisplay}}
+      {{> profileDisplay}}
       {{/each}}
     </div>
     </div>
@@ -195,7 +195,7 @@
     <div class="card-content"> 
     <h4>Tutorials Created</h4>
       {{#each createdBy}}
-      {{> tutorialDisplay}}
+      {{> profileDisplay}}
       {{/each}}
     </div>
     </div>
@@ -206,7 +206,7 @@
     <div class="card-content"> 
     <h4>Tutorials Upvoted</h4>
      {{#each upvotedBy}}
-      {{> tutorialDisplay}}
+      {{> profileDisplay}}
       {{/each}}
     </div>
     </div>
@@ -269,14 +269,7 @@
         <a href="26/Ruby" class="collection-item">Ruby</a>
          <a href="27/SQL" class="collection-item">SQL</a>
         
-        <a href="28/Wordpress" class="collection-item">Wordpress</a>
-
-        
-
-         
-         
-         
-           
+        <a href="28/Wordpress" class="collection-item">Wordpress</a>          
             
 
             
@@ -302,6 +295,33 @@
               
             <div class="col s12"> 
              <a class="title" target="_blank" href="{{url}}">{{name}}
+             <p class="url">{{url}} </p></a>
+             </div>
+
+    </div>
+
+    <div class="col s2 m2 l1">
+     <a id="viewProfile" href="/showProfile/{{this._id}}"><img src="{{pictureUrl}}" width="45" class="circle responsive-img"/></a>
+    </div>
+
+  </div>
+  </div>
+</template>
+
+ <template name="profileDisplay">
+<div>
+  <div class="row post">
+      <div class="col s2 m1 l1">
+            
+            <a id="addScore" class="upvote {{upvotedClass}}"><span id="upArrow" class="upvote--arrow"></span><span class="upvote--count">{{score}}</span></a>
+            
+
+      </div>
+
+      <div class="col s8 m9 l10">
+              
+            <div class="col s12"> 
+             <a class="title" target="_blank" href="{{url}}">{{name}} <span class="badge">{{category}}</span>
              <p class="url">{{url}} </p></a>
              </div>
 

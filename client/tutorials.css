@@ -9,7 +9,6 @@ p {
   line-height: 2rem;
 }
 
-
 .collection a.collection-item{
 	color:black;
    border-bottom: 1px solid #fbe9e7;
@@ -29,7 +28,7 @@ span.badge
 {
   position: relative;
   left:10px;
-  background-color: green;
+  background-color: #26a69a;
   color: white;
   border-radius: 3px;
   font-weight: 100;
@@ -71,7 +70,7 @@ span.badge
   margin-bottom: 3px;
 }
 .url{
-
+  
   text-decoration: none;
   color: #534540;
   font-size: 16px;
