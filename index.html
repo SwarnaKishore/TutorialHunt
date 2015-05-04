@@ -3,11 +3,20 @@
   <title>Tutorial Hunt</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-
- 
-</head>
+<link href='http://fonts.googleapis.com/css?family=Dancing+Script:700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+ </head>
 
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=1437258553251941";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div id="navbar" class="navbar-fixed">
   <nav>
     <div class="nav-wrapper container">
@@ -96,14 +105,13 @@
 
 
 
-<footer class="page-footer">
+<footer>
+       <div class="row">
+       <div class="col l3">
+       <div class="fb-share-button" data-href="http://tutorialhunt.meteor.com/" data-layout="icon_link"></div>
+       </div>
+       </div>
           
-          <div class="footer-copyright">
-            <div class="container">
-            © 2015 Tutorial hunt
-            
-            </div>
-          </div>
         </footer>
 
 
@@ -221,7 +229,7 @@
 
 <template name="list">
  
-<h3 class="center">Tutorials</h3>
+<h5 class="center tagLine">View and share the best tutorials at one place</h5>
 <div class="container">
   <div class="row">
    

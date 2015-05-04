@@ -1,10 +1,11 @@
-
-
 .at-social-btn {
    margin-bottom: 15px;
  }
-
-
+/*footer.page-footer {
+  background-color: #ffffff;
+  color: black;
+}
+*/
 p {
   line-height: 2rem;
 }
@@ -19,10 +20,9 @@ p {
 footer.page-footer {
   margin: 0;
 }
-
-
- 
-
+.brand-logo{
+  font-family: 'Open Sans', sans-serif;
+}
 
 span.badge
 {
@@ -33,12 +33,6 @@ span.badge
   border-radius: 3px;
   font-weight: 100;
 }
-
-
-
-
-
-
 
 .none{
   display:none;
@@ -107,7 +101,11 @@ span.badge
   top: -9px;
 }
 
-
+.tagLine
+{
+  margin:25px;
+  font-family: 'Dancing Script', cursive;
+}
 .upvote.upvoted .upvote--count {
   color: #ee6e73;
 }
