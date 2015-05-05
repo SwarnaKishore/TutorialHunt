@@ -119,7 +119,16 @@ Template.tutorialDisplay.events({
          $('#modal1').openModal();
 
         } 
-   }
+   },
+   "click .url": function (event, template) {
+    event.preventDefault();
+    var tutorialId = this._id;
+    Session.set('selectedTutorial', tutorialId);
+     var selectedTutorial = Session.get('selectedTutorial');
+     console.log(selectedTutorial);
+    
+    
+  }
 
  });
 
@@ -139,6 +148,17 @@ Template.profileDisplay.helpers({
   }
 });
 
+Template.addTutorialForm.helpers({
+isAdmin : function()
+{
+  if(Meteor.user().services.google)
+  {
+  var userId = Meteor.user().services.google.id;
+   if(userId == 108452617739825885356)
+    return true;
+}
+}
+});
 
 
 Template.profileDisplay.events({
@@ -233,7 +253,18 @@ event.preventDefault();
          
       
         
+  },
+
+
+  'click #remove' : function(event , template) 
+  {
+    
+  var selectedTutorial = Session.get('selectedTutorial');
+ 
+    Meteor.call('removeTutorial', selectedTutorial);
+
   }
+
 });
 
 
@@ -247,12 +278,25 @@ if(Meteor.isServer)
     return true;
   }
 });
-
-  Meteor.users.deny({
+   Meteor.users.deny({
   insert: function() {
+    return true;
+  }
+});
+
+  tutorialList.allow({
+  insert: function () {
     return false;
   }
 });
+
+
+  tutorialList.allow({
+  update: function () {
+    return false;
+  }
+});
+
    
 
 Meteor.methods({
@@ -283,6 +327,9 @@ tutorialList.insert({
       $inc :{score: scoreValue}
     }); 
  
+},
+'removeTutorial' : function(selectedTutorial){
+tutorialList.remove(selectedTutorial);
 }
 
 

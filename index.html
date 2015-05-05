@@ -107,10 +107,15 @@
 
 <footer>
        <div class="row">
-       <div class="col l3">
-       <div class="fb-share-button" data-href="http://tutorialhunt.meteor.com/" data-layout="icon_link"></div>
-       </div>
-       </div>
+         <div class="col l1 offset-l5">
+             <div class="fb-share-button" data-href="http://tutorialhunt.meteor.com/" data-layout="icon_link">
+            </div>
+         </div>
+         <div class="col l1">
+               <a href="https://twitter.com/share" class="twitter-share-button" data-text="Tutorial hunt - View and share the best tutorials at one place" data-via="swarnakishoree" data-count="none">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+         </div>
+                </div><!--row-->
           
         </footer>
 
@@ -302,8 +307,8 @@
       <div class="col s8 m9 l10">
               
             <div class="col s12"> 
-             <a class="title" target="_blank" href="{{url}}">{{name}}
-             <p class="url">{{url}} </p></a>
+             <a class="title" target="_blank" href="{{url}}">{{name}}</a>
+             <p class="url">{{url}} </p>
              </div>
 
     </div>
@@ -380,9 +385,18 @@ Enter url of tutorial<input type="text" name="playerUrl" id="playerUrl">-->
 
 <!--<input class="btn waves-effect waves-light btn" type="submit" value="add tutorial">-->
 </form>
+
+
+
 </div>
 </div>
 </div>
+
+{{#if isAdmin}}
+  
+<input type="button" id="remove" value="remove tutorial">
+  {{/if}}
+
 
 
 </template>
