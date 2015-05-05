@@ -6,6 +6,12 @@
   color: black;
 }
 */
+.tutHeading{
+  margin-left: 30px;
+  margin-top: 25px;
+  font-weight: 500;
+  color: #ee6e73;
+  }
 p {
   line-height: 2rem;
 }

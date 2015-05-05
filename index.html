@@ -20,21 +20,21 @@
 <div id="navbar" class="navbar-fixed">
   <nav>
     <div class="nav-wrapper container">
-      <div class="container"> <a href="/" class="brand-logo">Tutorial Hunt</a></div>
+      <div class="container"> <a href="/"  class="brand-logo scrollTop">Tutorial Hunt</a></div>
      
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
           <li>{{> atNavButton }}</li>
         <!--<li>{{> atNavButton }}</li>-->
          {{#if currentUser}}
-         <li><a id="profileView" href="/Profile">View Profile</a></li>
+         <li><a id="profileView" class="scrollTop" href="/Profile">View Profile</a></li>
          {{/if}}
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li>{{> atNavButton }}</li>
         <!--<li>{{> atNavButton }}</li>-->
          {{#if currentUser}}
-         <li><a id="profileView" href="/Profile">View Profile</a></li>
+         <li><a id="profileView" class="scrollTop" href="/Profile">View Profile</a></li>
          {{/if}}
       </ul>
     </div>
@@ -77,9 +77,6 @@
     </script>
 
   
-
-
-  
   
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
@@ -89,320 +86,10 @@
     
         $(".button-collapse").sideNav();
           $('.parallax').parallax();
-       $('ul.tabs').tabs();
-      
-  });
+       
+       });
   </script>
 
 
 </body>
-
-
-<template name="Layout">
-
-
-{{> yield}}
-
-
-
-<footer>
-       <div class="row">
-         <div class="col l1 offset-l5">
-             <div class="fb-share-button" data-href="http://tutorialhunt.meteor.com/" data-layout="icon_link">
-            </div>
-         </div>
-         <div class="col l1">
-               <a href="https://twitter.com/share" class="twitter-share-button" data-text="Tutorial hunt - View and share the best tutorials at one place" data-via="swarnakishoree" data-count="none">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-         </div>
-                </div><!--row-->
-          
-        </footer>
-
-
-
-</template>
-
-
-
-<template name="Profile">
-<div class="container">
-  <div class="card">
-    <div class="card-content">
-       <div class="row">
-        <div class="col s12 m5 l5">
-          <img src="{{profilePicture}}" class="circle responsive-img" width="200"/>
-        </div>
-        
-        <div class="col s12 m7 l7">
-          <table class="bordered">
-            <tr>
-            <td>Name:</td>
-            <td>{{profilename}}</td>
-            </tr>
-            <tr>
-            <td>Member since:</td>
-            <td>{{memberSince}}</td>
-            </tr>
-          </table>
-        </div><!--col-->
-   </div><!--row-->
-  </div><!--card content-->
-</div><!--card-->
-</div><!--container-->
-
-
-<div class="container">
-  <div class="card">
-    <div class="card-content"> 
-    <h4>Tutorials Created</h4>
-      {{#each createdBy}}
-      {{> profileDisplay}}
-      {{/each}}
-    </div>
-    </div>
-</div>
-
-<div class="container">
-  <div class="card">
-    <div class="card-content"> 
-    <h4>Tutorials Upvoted</h4>
-     {{#each upvotedBy}}
-      {{> profileDisplay}}
-      {{/each}}
-    </div>
-    </div>
-</div>
-</template>
-
-
-<template name="showProfile">
-<div class="container">
-  <div class="card">
-    <div class="card-content">
-       <div class="row">
-        <div class="col s12 m5 l5">
-          <img src="{{pictureUrl}}" class="circle responsive-img" width="200"/>
-        </div>
-        
-        <div class="col s12 m7 l7">
-          <table class="bordered">
-            <tr>
-            <td>Name:</td>
-            <td>{{profileName}}</td>
-            </tr>
-            <tr>
-            <td>Member since:</td>
-            <td>{{createdAt}}</td>
-            </tr>
-          </table>
-        </div><!--col-->
-   </div><!--row-->
-  </div><!--card content-->
-</div><!--card-->
-</div><!--container-->
-
-
-<div class="container">
-  <div class="card">
-    <div class="card-content"> 
-    <h4>Tutorials Created</h4>
-      {{#each createdBy}}
-      {{> profileDisplay}}
-      {{/each}}
-    </div>
-    </div>
-</div>
-
-<div class="container">
-  <div class="card">
-    <div class="card-content"> 
-    <h4>Tutorials Upvoted</h4>
-     {{#each upvotedBy}}
-      {{> profileDisplay}}
-      {{/each}}
-    </div>
-    </div>
-</div>
-
-</template>
-
-
-
-
-
-
-<template name="list">
- 
-<h5 class="center tagLine">View and share the best tutorials at one place</h5>
-<div class="container">
-  <div class="row">
-   
-    <div class="col s12 m10 l6">
-       <div class="collection">
-        <a href="1/AndroidDevelopment" class="collection-item">Android development</a>
-        <a href="2/AngularJs" class="collection-item">Angular Js</a>
-      
-       
-         <a href="3/Backbone" class="collection-item">Backbone.js</a>
-         <a href="4/Bootstrap" class="collection-item">Bootstrap</a>
-         <a href="5/CAndCPlusPlus" class="collection-item">C & C++</a>
-         <a href="6/CSharp" class="collection-item">C#</a>
-         <a href="7/Django" class="collection-item">Django</a>
-         <a href="8/Express" class="collection-item">Express.js</a>
-         <a href="9/Git" class="collection-item">Git</a>
-        <a href="10/Go" class="collection-item">Go</a>
-        <a href="11/Hadoop" class="collection-item">Hadoop</a>
-         <a href="12/HTMLandCSS" class="collection-item">HTML & CSS</a>
-        <a href="13/Java" class="collection-item">Java</a>
-        <a href="14/Javascript" class="collection-item">Javascript</a>
-        
-
-      
-        
-       
-      
-      </div>
-    </div>
-
-    <div class="col s12 m10 l6">
-       <div class="collection">
-       <a href="15/Jquery" class="collection-item">Jquery</a>
-               <a href="16/Meteor" class="collection-item">Meteor</a>
-        <a href="17/Mongodb" class="collection-item">Mongodb</a>
-          <a href="18/Mysql" class="collection-item">MySql</a>
-         <a href="19/NodeJs" class="collection-item">Node.js</a>
-          <a href="20/Perl" class="collection-item">Perl</a>
-       <a href="21/PHP" class="collection-item">PHP</a>
-      <a href="22/Photoshop" class="collection-item">Photoshop</a>
-       <a href="23/Python" class="collection-item">Python</a>
-        <a href="24/React" class="collection-item">React</a>
-
-        <a href="25/RubyOnRails" class="collection-item">Ruby on rails</a>
-        <a href="26/Ruby" class="collection-item">Ruby</a>
-         <a href="27/SQL" class="collection-item">SQL</a>
-        
-        <a href="28/Wordpress" class="collection-item">Wordpress</a>          
-            
-
-            
-    </div>
-    </div>
-  </div>
-</div>
-</template>
-
-
-
- <template name="tutorialDisplay">
-<div>
-  <div class="row post">
-      <div class="col s2 m1 l1">
-            
-            <a id="addScore" class="upvote {{upvotedClass}}"><span id="upArrow" class="upvote--arrow"></span><span class="upvote--count">{{score}}</span></a>
-            
-
-      </div>
-
-      <div class="col s8 m9 l10">
-              
-            <div class="col s12"> 
-             <a class="title" target="_blank" href="{{url}}">{{name}}</a>
-             <p class="url">{{url}} </p>
-             </div>
-
-    </div>
-
-    <div class="col s2 m2 l1">
-     <a id="viewProfile" href="/showProfile/{{this._id}}"><img src="{{pictureUrl}}" width="45" class="circle responsive-img"/></a>
-    </div>
-
-  </div>
-  </div>
-</template>
-
- <template name="profileDisplay">
-<div>
-  <div class="row post">
-      <div class="col s2 m1 l1">
-            
-            <a id="addScore" class="upvote {{upvotedClass}}"><span id="upArrow" class="upvote--arrow"></span><span class="upvote--count">{{score}}</span></a>
-            
-
-      </div>
-
-      <div class="col s8 m9 l10">
-              
-            <div class="col s12"> 
-             <a class="title" target="_blank" href="{{url}}">{{name}} <span class="badge">{{category}}</span>
-             <p class="url">{{url}} </p></a>
-             </div>
-
-    </div>
-
-    <div class="col s2 m2 l1">
-     <a id="viewProfile" href="/showProfile/{{this._id}}"><img src="{{pictureUrl}}" width="45" class="circle responsive-img"/></a>
-    </div>
-
-  </div>
-  </div>
-</template>
-
-
-
-
-<template name="addTutorialForm">
-
- 
-  <a id="addTutorial" href="#!" onclick="Show_Div(Div_1)"> Click here to add
-  </a>
-
-<div id="Div_1" style="display: none;">
-<div class="card">
-<div class="card-content">
-<form class="col s12 m6 l4" name="addForm">
-<!--Enter name of tutorial<input type="text" name="playerName" id="playerName">
-Enter url of tutorial<input type="text" name="playerUrl" id="playerUrl">-->
-
-          <div class="row">
-          <div class="input-field col s12 m6 l6">
-          <input id="tutorialName" type="text" class="validate">
-          <label for="tutorialName">Enter name of tutorial</label>
-          </div>
-          </div>
-
-          <div class="row">
-          <div class="input-field col s12 m6 l6">
-          <input id="tutorialUrl" type="url" class="validate">
-          <label for="tutorialUrl">Enter url of tutorial</label>
-          </div>
-          </div>
-
-
- <button class="btn waves-effect waves-light" type="submit" name="action">Add tutorial
-    <i class="mdi-content-send right"></i>
-  </button>
-
-<!--<input class="btn waves-effect waves-light btn" type="submit" value="add tutorial">-->
-</form>
-
-
-
-</div>
-</div>
-</div>
-
-{{#if isAdmin}}
-  
-<input type="button" id="remove" value="remove tutorial">
-  {{/if}}
-
-
-
-</template>
-
-
-
-
-
 

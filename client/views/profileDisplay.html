@@ -1,0 +1,26 @@
+<template name="profileDisplay">
+<div>
+  <div class="row post">
+      <div class="col s2 m1 l1">
+            
+            <a id="addScore" class="upvote {{upvotedClass}}"><span id="upArrow" class="upvote--arrow"></span><span class="upvote--count">{{score}}</span></a>
+            
+
+      </div>
+
+      <div class="col s8 m9 l10">
+              
+            <div class="col s12"> 
+             <a class="title" target="_blank" href="{{url}}">{{name}} <span class="badge">{{category}}</span>
+             <p class="url">{{url}} </p></a>
+             </div>
+
+    </div>
+
+    <div class="col s2 m2 l1">
+     <a id="viewProfile" href="/showProfile/{{this._id}}"><img src="{{pictureUrl}}" width="45" class="circle responsive-img"/></a>
+    </div>
+
+  </div>
+  </div>
+</template>
