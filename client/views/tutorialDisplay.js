@@ -42,11 +42,8 @@ Template.tutorialDisplay.events({
     event.preventDefault();
     var tutorialId = this._id;
     Session.set('selectedTutorial', tutorialId);
-     var selectedTutorial = Session.get('selectedTutorial');
-     console.log(selectedTutorial);
-    
-    
-  }
+    var selectedTutorial = Session.get('selectedTutorial');
+    }
 
  });
 

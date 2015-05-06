@@ -73,7 +73,9 @@ isAdmin : function()
   var userId = Meteor.user().services.google.id;
    if(userId == 108452617739825885356)
     return true;
-}
+  }
+
+
 }
 });
 

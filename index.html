@@ -20,21 +20,21 @@
 <div id="navbar" class="navbar-fixed">
   <nav>
     <div class="nav-wrapper container">
-      <div class="container"> <a href="/"  class="brand-logo scrollTop">Tutorial Hunt</a></div>
+      <div class="container"> <a href="/"  class="brand-logo">Tutorial Hunt</a></div>
      
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
           <li>{{> atNavButton }}</li>
         <!--<li>{{> atNavButton }}</li>-->
          {{#if currentUser}}
-         <li><a id="profileView" class="scrollTop" href="/Profile">View Profile</a></li>
+         <li><a id="profileView"  href="/Profile">View Profile</a></li>
          {{/if}}
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li>{{> atNavButton }}</li>
         <!--<li>{{> atNavButton }}</li>-->
          {{#if currentUser}}
-         <li><a id="profileView" class="scrollTop" href="/Profile">View Profile</a></li>
+         <li><a id="profileView" href="/Profile">View Profile</a></li>
          {{/if}}
       </ul>
     </div>

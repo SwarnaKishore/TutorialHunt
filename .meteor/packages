@@ -5,8 +5,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 accounts-ui
 materialize:materialize
 iron:router
@@ -19,3 +17,4 @@ accounts-github
 aldeed:collection2
 accounts-google
 fortawesome:fontawesome
+
