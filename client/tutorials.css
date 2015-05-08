@@ -6,6 +6,10 @@
   color: black;
 }
 */
+.fa{
+  color: #26a69a;
+  font-size: 25px;
+}
 .tutHeading{
   margin-left: 30px;
   margin-top: 25px;
@@ -23,8 +27,8 @@ p {
  .collection a.collection-item:not(.active):hover {
       background-color: #fbe9e7; }
 
-footer.page-footer {
-  margin: 0;
+footer {
+  margin: 30px;
 }
 .brand-logo{
   font-family: 'Open Sans', sans-serif;
