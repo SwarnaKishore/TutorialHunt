@@ -9,7 +9,6 @@ accounts-ui
 materialize:materialize
 iron:router
 accounts-facebook
-bengott:avatar
 accounts-twitter
 useraccounts:materialize
 service-configuration
@@ -18,3 +17,4 @@ aldeed:collection2
 accounts-google
 fortawesome:fontawesome
 
+meteorhacks:search-source
