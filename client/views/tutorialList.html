@@ -1,52 +1,130 @@
-<template name="list">
  
-<h5 class="center tagLine">View and share the best and free tutorials at one place</h5>
-
-<div class="container">
+<template name="list">
+ <div class="container">
   <div class="row">
-   
-    <div class="col s12 m10 l6">
-       <div class="collection">
-        <a href="1/AndroidDevelopment" class="collection-item">Android development</a>
-        <a href="2/AngularJs" class="collection-item">Angular Js</a>
-        <a href="3/Backbone" class="collection-item">Backbone.js</a>
-         <a href="4/Bootstrap" class="collection-item">Bootstrap</a>
-         <a href="5/CAndCPlusPlus" class="collection-item">C & C++</a>
-         <a href="6/CSharp" class="collection-item">C#</a>
-         <a href="7/Django" class="collection-item">Django</a>
-         <a href="8/Express" class="collection-item">Express.js</a>
-         <a href="9/Git" class="collection-item">Git</a>
-        <a href="10/Go" class="collection-item">Go</a>
-        <a href="11/Hadoop" class="collection-item">Hadoop</a>
-         <a href="12/HTMLandCSS" class="collection-item">HTML & CSS</a>
-        <a href="13/Java" class="collection-item">Java</a>
-        <a href="14/Javascript" class="collection-item">Javascript</a>
-      </div>
-    </div>
-
-    <div class="col s12 m10 l6">
-       <div class="collection">
-       <a href="15/Jquery" class="collection-item">Jquery</a>
-               <a href="16/Meteor" class="collection-item">Meteor</a>
-        <a href="17/Mongodb" class="collection-item">Mongodb</a>
-          <a href="18/Mysql" class="collection-item">MySql</a>
-         <a href="19/NodeJs" class="collection-item">Node.js</a>
-          <a href="20/Perl" class="collection-item">Perl</a>
-       <a href="21/PHP" class="collection-item">PHP</a>
-      <a href="22/Photoshop" class="collection-item">Photoshop</a>
-       <a href="23/Python" class="collection-item">Python</a>
-        <a href="24/React" class="collection-item">React</a>
-
-        <a href="25/RubyOnRails" class="collection-item">Ruby on rails</a>
-        <a href="26/Ruby" class="collection-item">Ruby</a>
-         <a href="27/SQL" class="collection-item">SQL</a>
-        
-        <a href="28/Wordpress" class="collection-item">Wordpress</a>          
-            
-
-            
-    </div>
-    </div>
+    <h5 class="center tagLine">View and share the best and free tutorials at one place</h5>
+    {{> tabs}}
   </div>
 </div>
+</template>
+
+
+
+<template name="tabs">
+
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs z-depth-1">
+        <li class="tab col s6">
+          <a class="fontSize" href="#topTutorialTab">TOP VOTED</a></li>
+        <li class="tab col s6">
+        <a class="active fontSize" href="#categoriesTab">CATEGORIES</a></li>
+      </ul>
+    </div>
+
+    <div id="topTutorialTab" class="col s12">
+      <div class="card">
+        <div class="card-content"> 
+           {{#each topVoted}}
+             {{> profileDisplay}}
+            {{/each}}
+        
+        </div>
+      
+    </div>
+    </div>
+    
+    
+
+
+  <div id="categoriesTab">
+    <div class="col s12 m10 l6" >
+       <div class="collection">
+        <a href="1/AndroidDevelopment" class="collection-item">Android development<span class="TutorialBadge right">{{Count 'AndroidDevelopment'}}</span></a>
+
+        <a href="2/AngularJs" class="collection-item">Angular Js<span class="TutorialBadge right">{{Count 'AngularJs'}}</span></a>
+
+        <a href="3/Backbone" class="collection-item">Backbone.js<span class="TutorialBadge right">{{Count 'Backbone'}}</span></a>
+
+         <a href="4/Bootstrap" class="collection-item">Bootstrap<span class="TutorialBadge right">{{Count 'Bootstrap'}}</span></a>
+
+         <a href="5/CAndCPlusPlus" class="collection-item">C & C++<span class="TutorialBadge right">{{Count 'CAndCPlusPlus'}}</span></a>
+
+         <a href="6/CSharp" class="collection-item">C#<span class="TutorialBadge right">{{Count 'CSharp'}}</span></a>
+
+         <a href="7/Django" class="collection-item">Django<span class="TutorialBadge right">{{Count 'Django'}}</span></a>
+
+           <a href="29/EmberJs" class="collection-item">EmberJs<span class="TutorialBadge right">{{Count 'EmberJs'}}</span></a>
+
+         <a href="8/Express" class="collection-item">Express.js<span class="TutorialBadge right">{{Count 'Express'}}</span></a>
+
+         <a href="9/Git" class="collection-item">Git<span class="TutorialBadge right">{{Count 'Git'}}</span></a>
+
+        <a href="10/Go" class="collection-item">Go<span class="TutorialBadge right">{{Count 'Go'}}</span></a>
+
+        <a href="11/Hadoop" class="collection-item">Hadoop<span class="TutorialBadge right">{{Count 'Hadoop'}}</span></a>
+
+         <a href="12/HTMLandCSS" class="collection-item">HTML & CSS<span class="TutorialBadge right">{{Count 'HTMLandCSS'}}</span></a>
+
+           <a href="30/iOSAndSwift" class="collection-item">iOS and Swift<span class="TutorialBadge right">{{Count 'iOSAndSwift'}}</span></a>
+
+        <a href="13/Java" class="collection-item">Java<span class="TutorialBadge right">{{Count 'Java'}}</span></a>
+
+         <a href="14/Javascript" class="collection-item">Javascript<span class="TutorialBadge right">{{Count 'Javascript'}}</span></a>
+        
+       <a href="15/Jquery" class="collection-item">Jquery<span class="TutorialBadge right">{{Count 'Jquery'}}</span></a>
+        </div>
+    </div>
+
+    <div class="col s12 m10 l6">
+       <div class="collection">
+       
+       <a href="31/MaterialDesign" class="collection-item">MaterialDesign<span class="TutorialBadge right">{{Count 'MaterialDesign'}}</span></a>
+
+       <a href="32/MEAN" class="collection-item">MEAN<span class="TutorialBadge right">{{Count 'MEAN'}}</span></a>
+
+       <a href="16/Meteor" class="collection-item">Meteor<span class="TutorialBadge right">{{Count 'Meteor'}}</span></a>
+
+        <a href="17/Mongodb" class="collection-item">Mongodb<span class="TutorialBadge right">{{Count 'Mongodb'}}</span></a>
+
+          <a href="18/Mysql" class="collection-item">MySql<span class="TutorialBadge right">{{Count 'Mysql'}}</span></a>
+
+         <a href="19/NodeJs" class="collection-item">Node.js<span class="TutorialBadge right">{{Count 'NodeJs'}}</span></a>
+
+          <a href="20/Perl" class="collection-item">Perl<span class="TutorialBadge right">{{Count 'Perl'}}</span></a>
+
+       <a href="21/PHP" class="collection-item">PHP<span class="TutorialBadge right">{{Count 'PHP'}}</span></a>
+
+      <a href="22/Photoshop" class="collection-item">Photoshop<span class="TutorialBadge right">{{Count 'Photoshop'}}</span></a>
+
+      <a href="34/Polymer" class="collection-item">Polymer<span class="TutorialBadge right">{{Count 'Polymer'}}</span></a>
+
+       <a href="23/Python" class="collection-item">Python<span class="TutorialBadge right">{{Count 'Python'}}</span></a>
+
+        <a href="24/ReactAndReactNative" class="collection-item">React and React Native<span class="TutorialBadge right">{{Count 'ReactAndReactNative'}}</span></a>
+
+        <a href="25/RubyOnRails" class="collection-item">Ruby on rails<span class="TutorialBadge right">{{Count 'RubyOnRails'}}</span></a>
+
+        <a href="26/Ruby" class="collection-item">Ruby<span class="TutorialBadge right">{{Count 'Ruby'}}</span></a>
+
+         <a href="33/Sketch" class="collection-item">Sketch<span class="TutorialBadge right">{{Count 'Sketch'}}</span></a>
+         
+        <a href="27/SQL" class="collection-item">SQL<span class="TutorialBadge right">{{Count 'SQL'}}</span></a>
+       
+        
+        <a href="28/Wordpress" class="collection-item">Wordpress<span class="TutorialBadge right">{{Count 'Wordpress'}}</span></a>          
+                     
+        </div>
+      </div>
+    
+   </div><!--categoriesTab-->
+
+  </div><!--row-->
+
+
+
+
+    
+
+  
 </template>

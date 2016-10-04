@@ -26,7 +26,8 @@ profilePicture: function(){
           }
           else if(Meteor.user().services.twitter)
           {
-            return Meteor.user().services.twitter.profile_image_url;
+            return "http://twitter.com/" + Meteor.user().services.twitter.screenName + "/profile_image?size=original";
+            //Meteor.user().services.twitter.profile_image_url;
           }
           else if(Meteor.user().services.github)
             return "https://avatars3.githubusercontent.com/u/" + Meteor.user().services.github.id;
@@ -44,5 +45,10 @@ profilePicture: function(){
    
     return tutorialList.find({ upvoterIds: Meteor.userId()},{sort:  {score : -1}});
 
+  },
+
+  formatMemberSince:function(memberSince){
+    return moment(memberSince).format('MMMM Do YYYY');
   }
+  
 });

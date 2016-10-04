@@ -1,3 +1,51 @@
+Template.MaterialDesign.helpers({
+ MaterialDesign: function()
+ {
+  var currentUserId = Meteor.userId();
+  return tutorialList.find({category:"MaterialDesign"},{sort:  {score : -1}});
+}
+});
+
+Template.Polymer.helpers({
+ Polymer: function()
+ {
+  var currentUserId = Meteor.userId();
+  return tutorialList.find({category:"Polymer"},{sort:  {score : -1}});
+}
+});
+
+Template.MEAN.helpers({
+ MEAN: function()
+ {
+  var currentUserId = Meteor.userId();
+  return tutorialList.find({category:"MEAN"},{sort:  {score : -1}});
+}
+});
+
+Template.Sketch.helpers({
+ Sketch: function()
+ {
+  var currentUserId = Meteor.userId();
+  return tutorialList.find({category:"Sketch"},{sort:  {score : -1}});
+}
+});
+
+Template.EmberJs.helpers({
+ EmberJs: function()
+ {
+  var currentUserId = Meteor.userId();
+  return tutorialList.find({category:"EmberJs"},{sort:  {score : -1}});
+}
+});
+
+Template.iOSAndSwift.helpers({
+ iOSAndSwift: function()
+ {
+  var currentUserId = Meteor.userId();
+  return tutorialList.find({category:"iOSAndSwift"},{sort:  {score : -1}});
+}
+});
+
 
 Template.Python.helpers({
  Python: function()
@@ -6,6 +54,7 @@ Template.Python.helpers({
   return tutorialList.find({category:"Python"},{sort:  {score : -1}});
 }
 });
+
 
 Template.Wordpress.helpers({
  Wordpress: function()
@@ -216,11 +265,11 @@ Template.Photoshop.helpers({
 
 
 
-Template.React.helpers({
- React: function()
+Template.ReactAndReactNative.helpers({
+ ReactAndReactNative: function()
  {
   var currentUserId = Meteor.userId();
-  return tutorialList.find({category:"React"},{sort:  {score : -1}});
+  return tutorialList.find({category:"ReactAndReactNative"},{sort:  {score : -1}});
 }
 });
 

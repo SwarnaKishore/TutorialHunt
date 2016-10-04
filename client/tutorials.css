@@ -6,6 +6,19 @@
   color: black;
 }
 */
+
+
+.TutorialBadge {
+    position: relative;
+    background-color: #C8CCCB;
+    color: white;
+    font-weight: 100;
+    padding: 2px;
+    text-align: center;
+    min-width: 1.5rem;
+    border-radius: 50%;
+}
+
 footer .fa{
   color: #26a69a;
   font-size: 25px;
@@ -16,6 +29,7 @@ footer .fa{
   font-weight: 500;
   color: #ee6e73;
   }
+
 p {
   line-height: 2rem;
 }
@@ -33,6 +47,12 @@ footer {
 .brand-logo{
   font-family: 'Open Sans', sans-serif;
 }
+@media screen only and (max-width: 320px) {
+    .fontSize{
+        font-size: 5px;
+    }
+}
+
 
 span.badge
 {
@@ -137,39 +157,16 @@ span.badge
 
 
 
- /* 
-   .input-field label {
-     color: #ee6e73;
-   }
-   
-   .input-field input[type=text]:focus + label {
-     color: #ee6e73;
-   }
-   
-   .input-field input[type=text]:focus {
-     border-bottom: 1px solid #ee6e73;
-     box-shadow: 0 1px 0 0 #ee6e73;
-   }
-   
-   .input-field input[type=text].valid {
-     border-bottom: 1px solid green;
-     box-shadow: 0 1px 0 0 green;
-   }
-   
-
-   .input-field input[type=url]:focus + label {
-     color: #ee6e73;
-   }
-  
-   .input-field input[type=url]:focus {
-     border-bottom: 1px solid #ee6e73;
-     box-shadow: 0 1px 0 0 #ee6e73;
-   }
-      .input-field input[type=url].valid {
-     border-bottom: 1px solid green;
-     box-shadow: 0 1px 0 0 green;
-   }
-*/
-
-
-
+.load-more {
+    display: block;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.05);
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 10px;
+}
+.load-more:hover {
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.1);
+}

@@ -1,26 +1,3 @@
-  Meteor.users.deny({
-  update: function() {
-    return true;
-  }
-});
-   Meteor.users.deny({
-  insert: function() {
-    return true;
-  }
-});
-
-  tutorialList.allow({
-  insert: function () {
-    return false;
-  }
-});
-
-
-  tutorialList.allow({
-  update: function () {
-    return false;
-  }
-});
 
    
 

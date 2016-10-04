@@ -1,3 +1,5 @@
+
+
 Template.addTutorialForm.events({
 
 'submit form' : function(event,template)
@@ -31,7 +33,7 @@ event.preventDefault();
           }
           else if(Meteor.user().services.twitter)
           {
-            pictureUrl= Meteor.user().services.twitter.profile_image_url;
+            pictureUrl= "http://twitter.com/" + Meteor.user().services.twitter.screenName + "/profile_image?size=original";
           }
           else if(Meteor.user().services.github)
             pictureUrl = "https://avatars3.githubusercontent.com/u/" + Meteor.user().services.github.id;

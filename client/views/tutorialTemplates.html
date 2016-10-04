@@ -1,7 +1,7 @@
 <template name="Python">
 <div class="container">
 <br>
-<p>Do you know any python tutorials? 
+<p>Do you know any Python tutorials? 
  {{> addTutorialForm}}</p>
    <br>
   <div class="card">
@@ -16,12 +16,119 @@
 </div>
   </template>
 
+  <template name="Polymer">
+<div class="container">
+<br>
+<p>Do you know any Polymer tutorials? 
+ {{> addTutorialForm}}</p>
+   <br>
+  <div class="card">
+  <h5 class="tutHeading">Polymer tutorials</h5>
+    <div class="card-content"> 
+     {{#each Polymer}}
+    {{> tutorialDisplay}}
+  {{/each}}
+  
+    </div>
+    </div>
+</div>
+  </template>
 
+<template name="MaterialDesign">
+<div class="container">
+<br>
+<p>Do you know any Material Design tutorials? 
+ {{> addTutorialForm}}</p>
+   <br>
+  <div class="card">
+  <h5 class="tutHeading">Material Design tutorials</h5>
+    <div class="card-content"> 
+     {{#each MaterialDesign}}
+    {{> tutorialDisplay}}
+  {{/each}}
+  
+    </div>
+    </div>
+</div>
+  </template>
+
+  <template name="MEAN">
+<div class="container">
+<br>
+<p>Do you know any MEAN tutorials? 
+ {{> addTutorialForm}}</p>
+   <br>
+  <div class="card">
+  <h5 class="tutHeading">MEAN tutorials</h5>
+    <div class="card-content"> 
+     {{#each MEAN}}
+    {{> tutorialDisplay}}
+  {{/each}}
+    </div>
+    </div>
+</div>
+  </template>
+
+  <template name="Sketch">
+<div class="container">
+<br>
+<p>Do you know any Sketch tutorials? 
+ {{> addTutorialForm}}</p>
+   <br>
+  <div class="card">
+  <h5 class="tutHeading">Sketch tutorials</h5>
+    <div class="card-content"> 
+     {{#each Sketch}}
+    {{> tutorialDisplay}}
+  {{/each}}
+  
+    </div>
+    </div>
+</div>
+  </template>
+
+
+ <template name="EmberJs">
+<div class="container">
+<br>
+<p>Do you know any Ember.Js tutorials? 
+ {{> addTutorialForm}}</p>
+   <br>
+  <div class="card">
+  <h5 class="tutHeading">Ember.Js tutorials</h5>
+    <div class="card-content"> 
+     {{#each EmberJs}}
+    {{> tutorialDisplay}}
+  {{/each}}
+  
+    </div>
+    </div>
+</div>
+  </template>
+
+
+  <template name="iOSAndSwift">
+<div class="container">
+<br>
+<p>Do you know any iOS and Swift tutorials? 
+ {{> addTutorialForm}}</p>
+   <br>
+  <div class="card">
+  <h5 class="tutHeading">iOS and Swift tutorials</h5>
+    <div class="card-content"> 
+     {{#each iOSAndSwift}}
+    {{> tutorialDisplay}}
+  {{/each}}
+  
+    </div>
+    </div>
+</div>
+  </template>
 
   <template name="Wordpress">
 <div class="container">
 <br>
-<p>Do you know any wordpress tutorials? 
+<p>Do you know any Wordpress tutorials? 
  {{> addTutorialForm}}</p>
    <br>
   <div class="card">
@@ -488,16 +595,16 @@
 
 
 
-  <template name="React">
+  <template name="ReactAndReactNative">
 <div class="container">
 <br>
-<p>Do you know any React tutorials? 
+<p>Do you know any React and React Nativetutorials? 
  {{> addTutorialForm}}</p>
    <br>
   <div class="card">
-  <h5 class="tutHeading">React tutorials</h5>
+  <h5 class="tutHeading">React and React Native tutorials</h5>
     <div class="card-content"> 
-     {{#each React}}
+     {{#each ReactAndReactNative}}
     {{> tutorialDisplay}}
   {{/each}}
   
