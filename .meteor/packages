@@ -34,3 +34,4 @@ standard-minifier-js
 shell-server
 useraccounts:iron-routing
 momentjs:moment
+mrt:jquery-ui

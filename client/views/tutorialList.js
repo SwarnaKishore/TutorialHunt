@@ -16,6 +16,6 @@ Template.tabs.helpers({
 	}
 });
 
-Template.tabs.onRendered = function(){
+Template.tabs.rendered = function(){
 	$('ul.tabs').tabs();
 };
