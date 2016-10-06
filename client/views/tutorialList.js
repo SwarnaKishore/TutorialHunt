@@ -17,5 +17,6 @@ Template.tabs.helpers({
 });
 
 Template.tabs.rendered = function(){
+	debugger;
 	$('ul.tabs').tabs();
 };
