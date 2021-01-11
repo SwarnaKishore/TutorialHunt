@@ -1,6 +1,4 @@
 
-const uri = process.env.MONGODB_URI;
-
 Meteor.methods({
 'insertTutorialData' : function(tutorialNameVar,tutorialUrlVar,tutorialName,profileName,pictureUrl)
 {
@@ -17,9 +15,6 @@ tutorialList.insert({
   pictureUrl : pictureUrl
 });
 },
-
-
-
 
 
 'addScoreIds' : function(selectedTutorial, userId , scoreValue)
